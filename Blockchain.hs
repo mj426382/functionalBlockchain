@@ -222,7 +222,7 @@ Tx# 0x085e2467 from: 0x790251e0 to: 0xb1011705 amount: 1000
 pprHeader :: BlockHeader -> ShowS
 pprHeader self@(BlockHeader parent cb txroot nonce)
   = pprV [ p ("hash", VH $ hash self)
-         , p ("parent", VH parent)
+         , p ("parent", VH $ parent)
          , p ("miner", VH $ txTo cb)
          , p ("root", VH txroot)
          , p ("nonce", nonce)

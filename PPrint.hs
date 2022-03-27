@@ -19,7 +19,7 @@ intercalateS sep (x : z) = x . sep . intercalateS sep z
 pprListWith :: (a -> ShowS) -> [a] -> ShowS
 pprListWith fun [] = showString ""
 pprListWith fun [x] = fun x
-pprListWith fun (x : z) = fun x . pprListWith fun z
+pprListWith fun (x : z) = fun x . showChar '\n' . pprListWith fun z
 
 runShows :: ShowS -> IO ()
 runShows = putStrLn . ($"")
