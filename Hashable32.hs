@@ -1,3 +1,4 @@
+-- mj426382
 module Hashable32( Hash
                  , Hashable(..)
                  , VisiHash(..)

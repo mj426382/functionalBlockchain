@@ -1,3 +1,4 @@
+-- mj426382
 module Utils where
 
 fromEither :: Either a a -> a
