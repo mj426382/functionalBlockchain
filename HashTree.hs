@@ -106,4 +106,4 @@ showMerklePath [Right h] = ">" ++ showHash h
 showMerklePath (x : z) = showMerklePath [x] ++ showMerklePath z
 
 instance Show a => Show (MerkleProof a) where
-    showsPrec p (MerkleProof l m) = showParen(p > 1) (showString ("MerkleProof " ++ show l ++ " " ++ showMerklePath m))
+    showsPrec p (MerkleProof l m) = showParen(p > 1) (showString "MerkleProof " . showsPrec 11 l . showString (" " ++ showMerklePath m))
