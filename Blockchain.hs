@@ -2,7 +2,6 @@
 module Blockchain where
 import Control.Monad
 import Data.Word
-
 import Hashable32
 import HashTree
 import PPrint
@@ -56,8 +55,12 @@ tx1 = Tx
 type Miner = Address
 type Nonce = Word32
 
+correctNonce :: Bool -> BlockHeader -> Hash
+correctNonce True (BlockHeader pr t h n) = n
+correctNonce False (BlockHeader pr t h n) = findNonce (BlockHeader pr t h (n + 1))
+
 findNonce :: BlockHeader -> Hash
-findNonce (BlockHeader pr t h n) = if validNonce (BlockHeader pr t h n) then n else findNonce (BlockHeader pr t h (n + 1))
+findNonce blockHdr = correctNonce (validNonce blockHdr) blockHdr
 
 mineBlock :: Miner -> Hash -> [Transaction] -> Block
 mineBlock miner parent txs = do
